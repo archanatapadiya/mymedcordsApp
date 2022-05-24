@@ -57,8 +57,7 @@ const onLogin = async (email: string, password: string, navigation: any, selecte
 
   let res;
   if (selectedUserType == 'Patient'){
-  //  let fcm = await getUserFcm();
-  let fcm = '123';
+   let fcm = await getUserFcm();
    res = await login(email, password, fcm);
    if (res?.is_success) {
     // createChannel();
@@ -96,7 +95,6 @@ const Header = () => {
   const navigation = useNavigation();
   const [selectedUserType, setSelectedUserType] = useState('Patient');
   const userType = ['Patient', 'Health Center'];
-  const [selectedUser, setSelectedUser] = useState('Patient');
   const eyeIcon = () => {
     setVisibility(!visible);
   };

@@ -44,6 +44,7 @@ const Current = ({route}) => {
   const [hospitalListOpd, setHospitalListOpd] = useState<HospitalData[]>();
   const [hospitalListIpd, setHospitalListIpd] = useState<HospitalData[]>();
 
+  console.log('hospitalListIpdhospitalListIpd', hospitalListIpd);
   const image = require('./../../assets/logo/background.jpeg');
   let hospitalListData: any = [];
 
@@ -101,8 +102,9 @@ const Current = ({route}) => {
       </View>
 
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        {hospitalListIpd?.filter(name => name.hospital_type != 1).length !=
-        0 ? (
+        {hospitalListIpd?.filter(name => name.hospital_type != 1).length != 0 &&
+        hospitalListIpd?.filter(name => name.hospital_type != 1).length !==
+          undefined ? (
           hospitalListIpd
             ?.filter(name => name.hospital_type != 1)
             .map((u, i) => {
@@ -145,47 +147,56 @@ const Current = ({route}) => {
                       justifyContent: 'center',
                       alignItems: 'center',
                     }}>
-                    <Button
-                      title="VIEW REPORTS"
-                      onPress={() =>
-                        navigate(ScreenNames.ReportsScreen, {
-                          type: 'history',
-                          hospName: u.name,
-                          logo: u.logo,
-                          hospitalId: u.pk,
-                          phoneNumber: u.phone_number,
-                        })
-                      }
-                    />
+                    <View>
+                      <Button
+                        title="View Reports"
+                        color="#D3ECF9"
+                        onPress={() =>
+                          navigate(ScreenNames.ReportsScreen, {
+                            type: 'history',
+                            hospName: u.name,
+                            logo: u.logo,
+                            hospitalId: u.pk,
+                            phoneNumber: u.phone_number,
+                          })
+                        }
+                      />
+                    </View>
 
                     <Text>{'\n'}</Text>
-                    <Button
-                      title="VIEW NOTES"
-                      onPress={() =>
-                        navigate(ScreenNames.UpdatesScreen, {
-                          type: 'history',
-                          hospName: u.name,
-                          logo: u.logo,
-                          hospitalId: u.pk,
-                          phoneNumber: u.phone_number,
-                        })
-                      }
-                    />
+                    <View>
+                      <Button
+                        title="View Notes"
+                        color="#D3ECF9"
+                        onPress={() =>
+                          navigate(ScreenNames.UpdatesScreen, {
+                            type: 'history',
+                            hospName: u.name,
+                            logo: u.logo,
+                            hospitalId: u.pk,
+                            phoneNumber: u.phone_number,
+                          })
+                        }
+                      />
+                    </View>
 
                     <Text>{'\n'}</Text>
 
-                    <Button
-                      title="VIEW BILLING"
-                      onPress={() =>
-                        navigate(ScreenNames.BillingScreen, {
-                          type: 'history',
-                          hospName: u.name,
-                          logo: u.logo,
-                          hospitalId: u.pk,
-                          phoneNumber: u.phone_number,
-                        })
-                      }
-                    />
+                    <View>
+                      <Button
+                        title="View Billing"
+                        color="#D3ECF9"
+                        onPress={() =>
+                          navigate(ScreenNames.BillingScreen, {
+                            type: 'history',
+                            hospName: u.name,
+                            logo: u.logo,
+                            hospitalId: u.pk,
+                            phoneNumber: u.phone_number,
+                          })
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               );
@@ -199,11 +210,24 @@ const Current = ({route}) => {
               alignSelf: 'center',
               textAlign: 'center',
             }}>
-            No records uploaded. Please connect with the health care provider
-            for your records.
+            No records found. {'\n'}Contact your health care provider for
+            details.
           </Text>
         )}
       </ScrollView>
+
+      <View
+        style={{
+          width: '100%',
+          height: 50,
+          justifyContent: 'center',
+          alignItems: 'center',
+          // position: 'absolute',
+          bottom: 0,
+        }}>
+        <Text style={{color: '#D3ECF9'}}>v2.0</Text>
+        <Text style={{color: '#D3ECF9'}}>MEDCLINIQ</Text>
+      </View>
     </ImageBackground>
   );
 };

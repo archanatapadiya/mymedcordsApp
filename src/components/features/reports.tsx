@@ -19,6 +19,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import CallHospital from '../callHosp';
 import {DataTable} from 'react-native-paper';
 import PageLogo from '../pageLogo';
+import moment from 'moment';
 
 interface ReportData {
   descreption: string;
@@ -150,88 +151,173 @@ const Reports = ({route}) => {
 
         <View />
         {userReportList?.length != 0 && userReportList !== undefined ? (
-          <View style={{paddingLeft: 20, paddingRight: 20}}>
-            <DataTable
-              style={{
-                borderWidth: 2,
-                borderColor: '#0A4A6B',
-              }}>
-              <DataTable.Header
+          <View style={{paddingLeft: 2, paddingRight: 2}}>
+            <ScrollView>
+              <DataTable
                 style={{
-                  // paddingLeft: 50,
-                  // paddingRight: 30,
-                  borderBottomWidth: 2,
-                  backgroundColor: '#C7E7F8',
+                  borderWidth: 2,
+                  borderColor: '#0A4A6B',
                 }}>
-                <DataTable.Title>
-                  <Text
+                <DataTable.Header
+                  style={{
+                    // paddingLeft: 50,
+                    // paddingRight: 30,
+                    borderBottomWidth: 2,
+                    backgroundColor: '#C7E7F8',
+                  }}>
+                  {/* <DataTable.Title
                     style={{
-                      fontSize: 15,
-                      fontWeight: 'bold',
-                      color: '#228EC7',
+                      width: 80,
                     }}>
-                    Date
-                  </Text>
-                </DataTable.Title>
-
-                <DataTable.Title>
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      fontWeight: 'bold',
-                      color: '#228EC7',
-                    }}>
-                    Doctor{' '}
-                  </Text>
-                </DataTable.Title>
-                <DataTable.Title>
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      fontWeight: 'bold',
-                      color: '#228EC7',
-                    }}>
-                    Report Date
-                  </Text>
-                </DataTable.Title>
-                <DataTable.Title numeric>
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      fontWeight: 'bold',
-                      color: '#228EC7',
-                    }}>
-                    Reports{' '}
-                  </Text>
-                </DataTable.Title>
-              </DataTable.Header>
-
-              {userReportList?.map((u, i) => {
-                return (
-                  <View key={i}>
-                    <DataTable.Row
+                    <Text
                       style={{
-                        // paddingLeft: 30,
-                        // paddingRight: 30,
-                        backgroundColor: '#67C2F1',
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        color: '#228EC7',
                       }}>
-                      <DataTable.Cell>{u.event_time}</DataTable.Cell>
+                      Date
+                    </Text>
+                  </DataTable.Title> */}
 
-                      <DataTable.Cell>{u.dr_name}</DataTable.Cell>
-                      <DataTable.Cell>{u.testdate}</DataTable.Cell>
+                  <DataTable.Title
+                    style={{
+                      // width: 100,
+                      flex: 1,
+                      // paddingLeft: 20,
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        color: '#228EC7',
+                      }}>
+                      Date
+                    </Text>
+                  </DataTable.Title>
 
-                      <DataTable.Cell numeric>
-                        <Text
-                          style={{color: 'blue'}}
-                          onPress={() => Linking.openURL(u.file_url)}>
-                          {u.file_name}
-                        </Text>
-                      </DataTable.Cell>
-                    </DataTable.Row>
-                  </View>
-                );
-              })}
-            </DataTable>
+                  <DataTable.Title
+                    style={{
+                      // width: 100,
+                      flex: 1.5,
+                      // paddingLeft: 20,
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        color: '#228EC7',
+                      }}>
+                      {'  '}Doctor
+                    </Text>
+                  </DataTable.Title>
+                  <DataTable.Title
+                    style={{
+                      // width: 100,
+                      flex: 1.5,
+                      // paddingLeft: 20,
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        color: '#228EC7',
+                      }}>
+                      Description
+                    </Text>
+                  </DataTable.Title>
+
+                  <DataTable.Title
+                    // numeric
+                    style={{
+                      // width: 100,
+                      flex: 1,
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        color: '#228EC7',
+                      }}>
+                      Reports{' '}
+                    </Text>
+                  </DataTable.Title>
+                </DataTable.Header>
+
+                {userReportList?.map((u, i) => {
+                  let testDate1 = moment(u.testdate).format('DD/MM/YY');
+                  let eventTime = moment(u.event_time).format('DD/MM/YY');
+
+                  return (
+                    <View key={i}>
+                      <DataTable.Row
+                        style={{
+                          // paddingLeft: 30,
+                          // paddingRight: 30,
+                          backgroundColor: '#67C2F1',
+                        }}>
+                        {/* <DataTable.Cell
+                          style={{
+                            borderRightWidth: 2,
+                            borderColor: '#0A4A6B',
+                            width: 100,
+                            padding: 2,
+                          }}>
+                          {eventTime}
+                        </DataTable.Cell> */}
+
+                        <DataTable.Cell
+                          style={{
+                            borderRightWidth: 2,
+                            borderColor: '#0A4A6B',
+                            // width: 100,
+                            flex: 1,
+                            padding: 3,
+                          }}>
+                          {testDate1}
+                        </DataTable.Cell>
+
+                        <DataTable.Cell
+                          style={{
+                            borderRightWidth: 2,
+                            borderColor: '#0A4A6B',
+                            // width: 180,
+                            flex: 1.5,
+                            padding: 3,
+                          }}>
+                          {u.dr_name}
+                        </DataTable.Cell>
+
+                        <DataTable.Cell
+                          style={{
+                            borderRightWidth: 2,
+                            borderColor: '#0A4A6B',
+                            // width: 180,
+                            flex: 1.5,
+                            padding: 3,
+                          }}>
+                          {u.description}
+                        </DataTable.Cell>
+
+                        <DataTable.Cell
+                          style={{
+                            // borderRightWidth: 2,
+                            // borderColor: '#0A4A6B',
+                            // width: 150,
+                            flex: 1,
+                            padding: 3,
+                          }}>
+                          <Text
+                            style={{color: 'blue'}}
+                            onPress={() => Linking.openURL(u.file_url)}>
+                            {u.file_name}
+                          </Text>
+                        </DataTable.Cell>
+                      </DataTable.Row>
+                    </View>
+                  );
+                })}
+              </DataTable>
+            </ScrollView>
           </View>
         ) : (
           <Text
@@ -246,6 +332,18 @@ const Reports = ({route}) => {
           </Text>
         )}
       </ScrollView>
+      <View
+        style={{
+          width: '100%',
+          height: 50,
+          justifyContent: 'center',
+          alignItems: 'center',
+          // position: 'absolute',
+          bottom: 0,
+        }}>
+        <Text style={{color: '#D3ECF9'}}>v2.0</Text>
+        <Text style={{color: '#D3ECF9'}}>MEDCLINIQ</Text>
+      </View>
     </ImageBackground>
   );
 };

@@ -15,8 +15,26 @@ export const ScreenNames = {
   History: 'History',
   AccountScreen: 'Account',
   ForgotPassword: 'Forgot Password',
+  ForgotPasswordHospital: 'Forgot Password Hospital',
   ResetPassword: 'Reset Password',
   EditProfile: 'Edit Profile',
+  AddNewUser: 'Add New User',
+  MoreScreen: 'More',
+  ReminderScreen: 'Reminder',
+  CreateReminderScreen: 'CreateReminder',
+  BookAppointmentScreen: 'BookAppointment',
+  ListAppointmentScreen: 'ListAppointment',
+  MyDocumentViewScreen: 'MyDocumentView',
+  MyDocumentAddScreen: 'MyDocumentAdd',
+  PatientDetailsScreen: 'Patient Details',
+  ReportsViewScreen: 'Reports View',
+  HealthDetailsViewScreen: 'Health Details View',
+  BillingViewScreen: 'Billing View',
+  ReportsAddScreen: 'Reports Add',
+  HealthdetailsAddScreen: 'Health Details Add',
+  BillingAddScreen: 'Billing Add',
+  ViewOffersScreen: 'View Offers',
+  ViewHealthTips: 'View Health Tips',
 }
 
 export const API = {
@@ -44,5 +62,10 @@ export const Constants = {
   STORAGE_ITEM_USER_ID: 'user_id',
   STORAGE_ITEM_CUSTOMER: 'customer_object',
   STORAGE_ITEM_USERNAME: 'user_name',
-  STORAGE_ITEM_TOKEN:'token',
+  STORAGE_ITEM_TOKEN: 'token',
+  STORAGE_ITEM_USER_TYPE: 'user_type',
+  STORAGE_ITEM_SEARCHED_USER_ID: 'searched_user_id',
+  STORAGE_ITEM_HOSPITAL_TYPE: 'hospital_type',
+  STORAGE_ITEM_USERFCM: 'user_fcm',
+
 }

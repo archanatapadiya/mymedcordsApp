@@ -141,6 +141,7 @@ const Current = ({route}) => {
             }}>
             <Button
               title="View Reports"
+              color="#D3ECF9"
               onPress={() =>
                 navigate(ScreenNames.ReportsScreen, {
                   type: 'current',
@@ -152,7 +153,8 @@ const Current = ({route}) => {
             />
             <Text>{'\n'}</Text>
             <Button
-              title="View Updates"
+              title="View Notes"
+              color="#D3ECF9"
               onPress={() =>
                 navigate(ScreenNames.UpdatesScreen, {
                   type: 'current',
@@ -165,6 +167,7 @@ const Current = ({route}) => {
             <Text>{'\n'}</Text>
             <Button
               title="View Billing"
+              color="#D3ECF9"
               onPress={() =>
                 navigate(ScreenNames.BillingScreen, {
                   type: 'current',
