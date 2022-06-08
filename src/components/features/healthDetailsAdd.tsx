@@ -241,20 +241,21 @@ const Reports = ({route}) => {
                     mode="contained"
                     labelStyle={Styles.nextButtonText2}
                     style={Styles.nextButtonContainer2}>
-                    {'  '}Select test date{'  '}
+                    {'  '}Select test date and Time{'  '}
                   </Button>
                   {input2.show && (
                     <DateTimePicker
                       testID="dateTimePicker2"
                       value={input2.date}
-                      mode={input2.mode}
+                      // mode={input2.mode}
+                      mode="datetime"
                       is24Hour={true}
                       display="spinner"
                       onChange={input2.onChange}
                     />
                   )}
 
-                  <Button
+                  {/* <Button
                     color="#fff"
                     onPress={input2.showTimepicker}
                     mode="contained"
@@ -271,7 +272,7 @@ const Reports = ({route}) => {
                       display="spinner"
                       onChange={input2.onChange}
                     />
-                  )}
+                  )} */}
 
                   <Button
                     color="#fff"
