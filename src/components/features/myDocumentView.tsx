@@ -149,6 +149,55 @@ const Reports = ({route}) => {
     }
   }, [loggedInUserId, isFocused]);
 
+  const createTwoButtonAlert1 = (
+    filename: any,
+    uploadDate: any,
+    reportDate: any,
+    doctor: any,
+    fileURL: any,
+    helthCenter: any,
+    description: nay,
+  ) => {
+    let heading = 'File Details';
+    let content1 = 'Type / Modality:';
+    let content2 = 'Doctor:';
+    let content3 = 'Health Center:';
+    let content4 = 'Description:';
+    let content5 = 'Upload Date:';
+    let content6 = 'Report Date:';
+
+    let value1 = '\n';
+
+    Alert.alert(
+      heading,
+      content1 +
+        filename +
+        value1 +
+        content2 +
+        doctor +
+        value1 +
+        content3 +
+        helthCenter +
+        value1 +
+        content4 +
+        description +
+        value1 +
+        content5 +
+        uploadDate +
+        value1 +
+        content6 +
+        reportDate,
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'Open File', onPress: () => Linking.openURL(fileURL)},
+      ],
+    );
+  };
+
   return (
     <ImageBackground
       source={image}
@@ -350,6 +399,22 @@ const Reports = ({route}) => {
                           <Text
                             style={{color: 'blue'}}
                             onPress={() =>
+                              createTwoButtonAlert1(
+                                u.file_name,
+                                u.event_time,
+                                u.testdate,
+                                u.dr_name,
+                                u.file_url,
+                                u.health_center,
+                                u.description,
+                              )
+                            }>
+                            {u.file_name}
+                          </Text>
+
+                          {/* <Text
+                            style={{color: 'blue'}}
+                            onPress={() =>
                               toggleModal1(
                                 u.file_name,
                                 u.event_time,
@@ -359,9 +424,7 @@ const Reports = ({route}) => {
                                 u.health_center,
                                 u.description,
                               )
-                            }
-                            // onPress={() => Linking.openURL(u.file_url)}>
-                          >
+                            }>
                             <Modal isVisible={isModalVisible}>
                               <View style={{flex: 1, marginTop: '50%'}}>
                                 <View style={{backgroundColor: '#0099ff'}}>
@@ -424,11 +487,6 @@ const Reports = ({route}) => {
                                     {'\n'}
                                   </Text>
 
-                                  {/* <Button
-                                    title="->"
-                                    onPress={() => Linking.openURL(fileUrl)}
-                                  /> */}
-
                                   <MaterialCommunityIcons
                                     // onPress={() => Linking.openURL(fileUrl)}
                                     onPress={openFile}
@@ -446,7 +504,7 @@ const Reports = ({route}) => {
                               </View>
                             </Modal>
                             {u.file_name}
-                          </Text>
+                          </Text> */}
                         </DataTable.Cell>
                         <DataTable.Cell>
                           <View>

@@ -8,6 +8,7 @@ import {
   View,
   Button,
   Image,
+  Alert,
   ImageBackground,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -20,6 +21,7 @@ import _ from 'lodash';
 import {DataTable} from 'react-native-paper';
 import Modal from 'react-native-modal';
 import PageLogo from '../pageLogo';
+import moment from 'moment';
 
 interface UpdateData {
   update_time: string;
@@ -63,6 +65,10 @@ const Updates = ({route}) => {
     const userId = await getUserId();
     setLoggedInUserId(userId);
     return userId;
+  };
+
+  const createTwoButtonAlert1 = (message: any) => {
+    Alert.alert(message);
   };
 
   useEffect(() => {
@@ -176,7 +182,7 @@ const Updates = ({route}) => {
         </View>
 
         {userUpdatesList?.length != 0 && userUpdatesList !== undefined ? (
-          <View style={{paddingLeft: 20, paddingRight: 20}}>
+          <View style={{paddingLeft: 2, paddingRight: 2}}>
             <DataTable style={{borderWidth: 2, borderColor: '#0A4A6B'}}>
               <DataTable.Header
                 style={{
@@ -185,7 +191,11 @@ const Updates = ({route}) => {
                   borderBottomWidth: 2,
                   backgroundColor: '#C7E7F8',
                 }}>
-                <DataTable.Title>
+                <DataTable.Title
+                  style={{
+                    // width: 100,
+                    flex: 2,
+                  }}>
                   <Text
                     style={{
                       fontSize: 20,
@@ -196,7 +206,11 @@ const Updates = ({route}) => {
                   </Text>
                 </DataTable.Title>
 
-                <DataTable.Title>
+                <DataTable.Title
+                  style={{
+                    // width: 100,
+                    flex: 1.5,
+                  }}>
                   <Text
                     style={{
                       fontSize: 20,
@@ -206,7 +220,11 @@ const Updates = ({route}) => {
                     Updates{' '}
                   </Text>
                 </DataTable.Title>
-                <DataTable.Title>
+                <DataTable.Title
+                  style={{
+                    // width: 100,
+                    flex: 1.5,
+                  }}>
                   <Text
                     style={{
                       fontSize: 20,
@@ -219,21 +237,39 @@ const Updates = ({route}) => {
               </DataTable.Header>
 
               {userUpdatesList?.map((u, i) => {
+                let testDate1 = moment(u.datetime).format('DD/MM/YY HH:mm A');
+
                 return (
                   <View key={i}>
                     <DataTable.Row
                       style={{
                         backgroundColor: '#67C2F1',
                       }}>
-                      <DataTable.Cell>{u.datetime}</DataTable.Cell>
+                      <DataTable.Cell
+                        style={{
+                          borderRightWidth: 2,
+                          borderColor: '#0A4A6B',
+                          // width: 150,
+                          flex: 2,
+                          padding: 3,
+                        }}>
+                        {testDate1}
+                      </DataTable.Cell>
 
-                      <DataTable.Cell>
-                        <Text
+                      <DataTable.Cell
+                        style={{
+                          borderRightWidth: 2,
+                          borderColor: '#0A4A6B',
+                          // width: 150,
+                          flex: 1.5,
+                          padding: 3,
+                        }}>
+                        {/* <Text
                           style={{color: 'blue'}}
                           onPress={() =>
                             toggleModal1(u.health_update, u.datetime)
                           }>
-                          <Modal isVisible={isModalVisible}>
+                           <Modal isVisible={isModalVisible}>
                             <View style={{flex: 1, marginTop: '50%'}}>
                               <Button title={modalTime} onPress={toggleModal} />
                               <Button title={modalText} onPress={toggleModal} />
@@ -245,9 +281,24 @@ const Updates = ({route}) => {
                             </View>
                           </Modal>
                           {u.health_update}
+                        </Text> */}
+
+                        <Text
+                          style={{color: 'blue'}}
+                          onPress={() =>
+                            createTwoButtonAlert1(u.health_update)
+                          }>
+                          {u.health_update}
                         </Text>
                       </DataTable.Cell>
-                      <DataTable.Cell>{u.dr_name}</DataTable.Cell>
+                      <DataTable.Cell
+                        style={{
+                          // width: 150,
+                          flex: 1.5,
+                          padding: 3,
+                        }}>
+                        {u.dr_name}
+                      </DataTable.Cell>
                     </DataTable.Row>
                   </View>
                 );

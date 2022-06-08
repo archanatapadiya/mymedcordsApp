@@ -25,6 +25,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import CallHospital from '../callHosp';
 import {DataTable, IconButton} from 'react-native-paper';
 import PageLogo from '../pageLogo';
+import moment from 'moment';
 
 interface ReportData {
   descreption: string;
@@ -79,6 +80,10 @@ const Reports = ({route}) => {
     const userId = await getUserId();
     setLoggedInUserId(userId);
     return userId;
+  };
+
+  const createTwoButtonAlert1 = (message: any) => {
+    Alert.alert(message);
   };
 
   useEffect(() => {
@@ -141,8 +146,8 @@ const Reports = ({route}) => {
 
         <View />
         {userReportListOPD?.length != 0 && userReportListOPD !== undefined ? (
-          <View style={{paddingLeft: 20, paddingRight: 20}}>
-            <ScrollView horizontal>
+          <View style={{paddingLeft: 2, paddingRight: 2}}>
+            <ScrollView>
               <DataTable
                 style={{
                   borderWidth: 2,
@@ -157,7 +162,8 @@ const Reports = ({route}) => {
                   }}>
                   <DataTable.Title
                     style={{
-                      width: 100,
+                      // width: 100,
+                      flex: 2,
                     }}>
                     <Text
                       style={{
@@ -165,13 +171,14 @@ const Reports = ({route}) => {
                         fontWeight: 'bold',
                         color: '#228EC7',
                       }}>
-                      Health Update
+                      Update
                     </Text>
                   </DataTable.Title>
 
                   <DataTable.Title
                     style={{
-                      width: 100,
+                      // width: 100,
+                      flex: 2,
                     }}>
                     <Text
                       style={{
@@ -184,7 +191,8 @@ const Reports = ({route}) => {
                   </DataTable.Title>
                   <DataTable.Title
                     style={{
-                      width: 100,
+                      // width: 100,
+                      flex: 2,
                     }}>
                     <Text
                       style={{
@@ -195,9 +203,16 @@ const Reports = ({route}) => {
                       Upload Date
                     </Text>
                   </DataTable.Title>
+                  <DataTable.Title
+                    style={{
+                      width: 20,
+                    }}
+                  />
                 </DataTable.Header>
 
                 {userReportListOPD?.map((u, i) => {
+                  let testDate1 = moment(u.datetime).format('DD/MM/YY HH:mm A');
+
                   return (
                     <View key={i}>
                       <DataTable.Row
@@ -211,18 +226,27 @@ const Reports = ({route}) => {
                           style={{
                             borderRightWidth: 2,
                             borderColor: '#0A4A6B',
-                            width: 150,
-                            padding: 20,
+                            // width: 150,
+                            flex: 1.5,
+                            padding: 3,
                           }}>
-                          {u.health_update}
+                          <Text
+                            style={{color: 'blue'}}
+                            onPress={() =>
+                              createTwoButtonAlert1(u.health_update)
+                            }>
+                            {u.health_update}
+                          </Text>
+                          {/* {u.health_update} */}
                         </DataTable.Cell>
 
                         <DataTable.Cell
                           style={{
                             borderRightWidth: 2,
                             borderColor: '#0A4A6B',
-                            width: 150,
-                            padding: 20,
+                            // width: 150,
+                            flex: 1.5,
+                            padding: 3,
                           }}>
                           {u.dr_name}
                         </DataTable.Cell>
@@ -230,13 +254,14 @@ const Reports = ({route}) => {
                           style={{
                             borderRightWidth: 2,
                             borderColor: '#0A4A6B',
-                            width: 150,
-                            padding: 20,
+                            // width: 150,
+                            flex: 2,
+                            padding: 3,
                           }}>
-                          {u.datetime}
+                          {testDate1}
                         </DataTable.Cell>
 
-                        <DataTable.Cell>
+                        <DataTable.Cell style={{flex: 0.7}}>
                           <View>
                             <IconButton
                               icon="delete"
@@ -290,8 +315,8 @@ const Reports = ({route}) => {
         {userDetails?.is_admit &&
           (userReportListCurrent?.length != 0 &&
           userReportListCurrent !== undefined ? (
-            <View style={{paddingLeft: 20, paddingRight: 20}}>
-              <ScrollView horizontal>
+            <View style={{paddingLeft: 2, paddingRight: 2}}>
+              <ScrollView>
                 <DataTable
                   style={{
                     borderWidth: 2,
@@ -306,7 +331,8 @@ const Reports = ({route}) => {
                     }}>
                     <DataTable.Title
                       style={{
-                        width: 100,
+                        // width: 100,
+                        flex: 2,
                       }}>
                       <Text
                         style={{
@@ -314,13 +340,14 @@ const Reports = ({route}) => {
                           fontWeight: 'bold',
                           color: '#228EC7',
                         }}>
-                        Health Update
+                        Update
                       </Text>
                     </DataTable.Title>
 
                     <DataTable.Title
                       style={{
-                        width: 100,
+                        // width: 100,
+                        flex: 2,
                       }}>
                       <Text
                         style={{
@@ -333,7 +360,8 @@ const Reports = ({route}) => {
                     </DataTable.Title>
                     <DataTable.Title
                       style={{
-                        width: 100,
+                        // width: 100,
+                        flex: 2,
                       }}>
                       <Text
                         style={{
@@ -344,9 +372,18 @@ const Reports = ({route}) => {
                         Upload Date
                       </Text>
                     </DataTable.Title>
+                    <DataTable.Title
+                      style={{
+                        width: 20,
+                      }}
+                    />
                   </DataTable.Header>
 
                   {userReportListCurrent?.map((u, i) => {
+                    let testDate1 = moment(u.datetime).format(
+                      'DD/MM/YY HH:mm A',
+                    );
+
                     return (
                       <View key={i}>
                         <DataTable.Row
@@ -360,18 +397,26 @@ const Reports = ({route}) => {
                             style={{
                               borderRightWidth: 2,
                               borderColor: '#0A4A6B',
-                              width: 150,
-                              padding: 20,
+                              // width: 150,
+                              flex: 1.5,
+                              padding: 3,
                             }}>
-                            {u.health_update}
+                            <Text
+                              style={{color: 'blue'}}
+                              onPress={() =>
+                                createTwoButtonAlert1(u.health_update)
+                              }>
+                              {u.health_update}
+                            </Text>
                           </DataTable.Cell>
 
                           <DataTable.Cell
                             style={{
                               borderRightWidth: 2,
                               borderColor: '#0A4A6B',
-                              width: 150,
-                              padding: 20,
+                              // width: 150,
+                              flex: 1.5,
+                              padding: 3,
                             }}>
                             {u.dr_name}
                           </DataTable.Cell>
@@ -379,12 +424,13 @@ const Reports = ({route}) => {
                             style={{
                               borderRightWidth: 2,
                               borderColor: '#0A4A6B',
-                              width: 150,
-                              padding: 20,
+                              // width: 150,
+                              padding: 3,
+                              flex: 1.5,
                             }}>
-                            {u.datetime}
+                            {testDate1}
                           </DataTable.Cell>
-                          <DataTable.Cell>
+                          <DataTable.Cell style={{flex: 0.7}}>
                             <View>
                               <IconButton
                                 icon="delete"
@@ -426,8 +472,8 @@ const Reports = ({route}) => {
 
         {userReportListHistory?.length != 0 &&
         userReportListHistory !== undefined ? (
-          <View style={{paddingLeft: 20, paddingRight: 20}}>
-            <ScrollView horizontal>
+          <View style={{paddingLeft: 2, paddingRight: 2}}>
+            <ScrollView>
               <DataTable
                 style={{
                   borderWidth: 2,
@@ -442,7 +488,8 @@ const Reports = ({route}) => {
                   }}>
                   <DataTable.Title
                     style={{
-                      width: 100,
+                      // width: 100,
+                      flex: 2,
                     }}>
                     <Text
                       style={{
@@ -450,13 +497,14 @@ const Reports = ({route}) => {
                         fontWeight: 'bold',
                         color: '#228EC7',
                       }}>
-                      Health Update
+                      Update
                     </Text>
                   </DataTable.Title>
 
                   <DataTable.Title
                     style={{
-                      width: 100,
+                      // width: 100,
+                      flex: 2,
                     }}>
                     <Text
                       style={{
@@ -469,7 +517,8 @@ const Reports = ({route}) => {
                   </DataTable.Title>
                   <DataTable.Title
                     style={{
-                      width: 100,
+                      // width: 100,
+                      flex: 2,
                     }}>
                     <Text
                       style={{
@@ -480,9 +529,15 @@ const Reports = ({route}) => {
                       Upload Date
                     </Text>
                   </DataTable.Title>
+                  <DataTable.Title
+                    style={{
+                      width: 20,
+                    }}
+                  />
                 </DataTable.Header>
 
                 {userReportListHistory?.map((u, i) => {
+                  let testDate1 = moment(u.datetime).format('DD/MM/YY HH:mm A');
                   return (
                     <View key={i}>
                       <DataTable.Row
@@ -496,18 +551,26 @@ const Reports = ({route}) => {
                           style={{
                             borderRightWidth: 2,
                             borderColor: '#0A4A6B',
-                            width: 150,
-                            padding: 20,
+                            // width: 150,
+                            padding: 3,
+                            flex: 1.5,
                           }}>
-                          {u.health_update}
+                          <Text
+                            style={{color: 'blue'}}
+                            onPress={() =>
+                              createTwoButtonAlert1(u.health_update)
+                            }>
+                            {u.health_update}
+                          </Text>
                         </DataTable.Cell>
 
                         <DataTable.Cell
                           style={{
                             borderRightWidth: 2,
                             borderColor: '#0A4A6B',
-                            width: 150,
-                            padding: 20,
+                            // width: 150,
+                            padding: 3,
+                            flex: 1.5,
                           }}>
                           {u.dr_name}
                         </DataTable.Cell>
@@ -515,12 +578,13 @@ const Reports = ({route}) => {
                           style={{
                             borderRightWidth: 2,
                             borderColor: '#0A4A6B',
-                            width: 150,
-                            padding: 20,
+                            // width: 150,
+                            padding: 3,
+                            flex: 2,
                           }}>
-                          {u.datetime}
+                          {testDate1}
                         </DataTable.Cell>
-                        <DataTable.Cell>
+                        <DataTable.Cell style={{flex: 0.7}}>
                           <View>
                             <IconButton
                               icon="delete"
